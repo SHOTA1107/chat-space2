@@ -26,6 +26,7 @@ Things you may want to cover:
 ## userテーブル
 |column|Type|options|
 |------|----|-------|
+|name|string|null: false, unique: true|
 |email|string|null: false, unique: true|
 |password|string|null: false|
 |group_id|integer|null: false, foreign_key: true|
@@ -34,10 +35,9 @@ Things you may want to cover:
 ##Association
 |column|Type|options|
 |------|----|-------|
-- has_many: chats
-- has_many: messages, through: :chats
+- has_many: messages
 - has_many: members
-- has_many: groups, through: :menbers
+- has_many: groups, through: :members
 
 ## groupテーブル
 |column|Type|options|
@@ -49,6 +49,7 @@ Things you may want to cover:
 |------|----|-------|
 - has_many: members
 - has_many: users, through: :members
+- has_many: messages
 
 ## messageテーブル
 |column|Type|options|
@@ -61,8 +62,8 @@ Things you may want to cover:
 ##Association
 |column|Type|options|
 |------|----|-------|
-- has_many: chats
-- has_many: users, through: :chats
+- belongs_to: user
+
 
 ## membersテーブル
 
@@ -75,12 +76,4 @@ Things you may want to cover:
 - belongs_to :group
 - belongs_to :user
 
-## chatテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|message_id|integer|null: false, foreign_key: true|
 
-### Association
-- belongs_to :message
-- belongs_to :user
