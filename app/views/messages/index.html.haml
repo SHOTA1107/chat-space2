@@ -23,10 +23,10 @@
           おはよう
 
     .form
-      %form.new_message
-        %input.form__message{placaholder:'type a message', value: 'type a message', type:'text', name:'message[content]', id:'message_content'}
-          .form__box
-            %label.form__message__image
-              = fa_icon 'picture-o', class: 'icon'
-              %input.hidden{type: 'file'}
-          %input.form__submit{type: 'submit', value: 'Send'}
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__box
+          = f.label :image, class: 'form__message__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
