@@ -13,14 +13,7 @@
         Edit
 
     .messages
-      .message
-        .message__upper-info
-          %p.message__upper-info__talker
-            shiro
-          %p.message__upper-info__date
-            2019/03/14(thu) 13:30:00
-        %p.message__text
-          おはよう
+      = render @messages
 
     .form
       = form_for [@group, @message] do |f|
