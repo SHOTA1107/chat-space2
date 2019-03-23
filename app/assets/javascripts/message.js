@@ -35,7 +35,7 @@ $(function(){
         contentType: false
     })
 
-    .done(function(messagedata){
+    .done(function(message){
       var html = buildHTML(data);
       $('.messages').append(html);
       $('.message').animate({scrollTop: $('messages')[0].scrollHeight}, 'fast');
