@@ -37,10 +37,10 @@
 
 
 .messages{
-  height: calc(100vh-190px);
+  height: calc(100vh - 245px);
   padding: 46px 40px;
   background-color: #fafafa;
-  overflow: scroll;
+  overflow: auto;
   .message{
     padding-bottom: 40px;
     &__upper-info{
@@ -71,6 +71,7 @@
   background-color: #ddd;
   bottom: 0;
   position: absolute;
+  display: flex;
   width: 1060px;
 }
     form.new_message{
@@ -79,7 +80,7 @@
       input.form__message{
         border: none;
         float: left;
-        width: calc(100% - 150px);
+        width: calc(100vh - 150px);
         height: 50px;
         color: #434a54;
         padding: 0 40px 0 10px;
