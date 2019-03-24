@@ -36,7 +36,7 @@ $(function(){
     })
 
     .done(function(message){
-      var html = buildHTML(data);
+      var html = buildMessageHTML(message);
       $('.messages').append(html);
       $('.message').animate({scrollTop: $('messages')[0].scrollHeight}, 'fast');
       $('.form__message').val('');
