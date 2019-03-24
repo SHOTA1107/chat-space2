@@ -1,5 +1,5 @@
 $(function(){
-  function buildMessageHTML(message){
+  function buildHTML(message){
     image = ( message.image ) ? `<p class="message-lower__image" src=${message.image}>` : "";
     var html =`
         <div class="message" data-id=${message.id}>
@@ -35,7 +35,7 @@ $(function(){
         contentType: false
     })
 
-    .done(function(message){
+    .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
       $('.message').animate({scrollTop: $('messages')[0].scrollHeight}, 'fast');
