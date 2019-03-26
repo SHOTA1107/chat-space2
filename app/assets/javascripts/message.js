@@ -22,6 +22,10 @@ $(function(){
 
   }
 
+  function ScrollMessage(){
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+  }
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -38,7 +42,7 @@ $(function(){
     .done(function(message){
       var html = buildMessageHTML(message);
       $('.messages').append(html);
-      $('.message').animate({scrollTop: $('messages')[0].scrollHeight}, 'fast');
+      ScrollMessage();
       $('.form__message').val('');
       $('.form__submit').prop('disabled', false);
     })
@@ -47,4 +51,34 @@ $(function(){
       alert('error');
     });
   });
+
+      var id = $('.messages .message:last-child').data('data-id');
+      var interval = setInterval(function(){
+      var insertHTML = '';
+
+      if (window.location.href.match(/\/groups\/\d+\/messages/)){
+
+      $.ajax({
+        url: location.href.json,
+        dataType: 'json',
+      })
+
+      .done(function(data){
+        data.forEach(function(message){
+          if(message.id > id){
+          insertHTML += buildMessageHTML(message);
+        }
+      });
+        $('.messages').append(insertHTML);
+        ScrollMessage();
+      })
+      .fail(function(data){
+        alert('自動更新に失敗しました');
+      });
+    } else {
+      clearInterval(interval);
+    }
+    id = $('.messages .message:last-child').data('data-id');
+  }, 5000);
 });
+
