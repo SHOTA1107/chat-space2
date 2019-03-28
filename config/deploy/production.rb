@@ -59,3 +59,5 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+server '52.194.179.63', user: 'ec2-user', roles: %{app db web}
